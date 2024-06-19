@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My System</title>
+    <style>
+        body {
+            background-color: gray;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        *{
+            user-select: none;
+            cursor: pointer;
+        }
+        ::-webkit-scrollbar {
+        width: 8px;
+        }
+        /* Track */
+        ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey; 
+        border-radius: 10px;
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: rgb(139, 136, 136); 
+        border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+        background: rgb(112, 110, 110); 
+        }
+
+        .screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+            position: fixed;
+            width: calc(1vw*100);
+            height: calc(1vh*94);
+            background-color: gray;
+            inset: 0;
+        }
+        .screen_panels {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            background-color: rgb(170, 167, 167);
+            width: calc(1vw*90);
+            margin-top: calc(1vh*3);
+            border-bottom: solid calc(1vw*1) white;
+            border-radius: calc(1vw*2);
+        }
+        .head_par {
+            position: absolute;
+            transform: translateY(-55%);
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0;
+            color: white;
+            box-shadow: 0 0 4px white;
+            background-color: rgb(78, 77, 77);
+            padding: calc(1vw*0.5) calc(1vw*4);
+            border-radius: calc(1vw*2);
+        }
+            .user {
+                flex-direction: column;
+                width: calc(1vw*90);
+                height: calc(1vh*14);
+            }
+                .user_panel {
+                    display: flex;
+                    flex-direction: row;
+                    height: calc(1vh*14);
+                    margin: 0;
+                    justify-content: start;
+                    align-items: center;
+                    background-color: rgb(170, 167, 167);
+                    width: calc(1vw*90);                   
+                    border-radius: calc(1vw*2);
+                }
+                    .img_user_div {
+                        height: calc(1vh*12);
+                        aspect-ratio: 1/1;
+                        background-color: transparent;
+                        margin: 0 calc(1vh*2) 0 calc(1vh*2);
+                    }   
+                        .img_user {
+                            height: calc(1vh*12);
+                            aspect-ratio: 1/1;
+                            border-radius: calc(1vh*2);
+                            box-shadow: 2px 0 2px gray,
+                                        -2px 0 2px gray,
+                                        0 2px 2px gray,
+                                        0 -2px 2px gray;
+                            object-fit: cover;
+                        }
+                    .status_user {
+                        flex-direction: column;
+                        justify-content: space-evenly;
+                        align-items: start;
+                        height: calc(1vh*12);
+                        aspect-ratio: 2.5/1;
+                        background-color: transparent;
+                    }
+                        .status_par {
+                            font-weight: bold;
+                            margin: 0;
+                            background-color: gray;
+                            padding: calc(1vw*0.5) calc(1vw*2);
+                            width: 96%;
+                            border-radius: calc(1vw*1);
+                        }
+            .characteristics {
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                height: calc(1vh*22);
+            }
+                .characteristics_l-r {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    width: calc(1vw*90);
+                    height: calc(1vh*22);
+                    background-color: transparent;
+                }
+                    .characteristics_left_right {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-evenly;
+                        align-items: start;
+                        background-color: transparent;
+                        width: 45%;
+                        height: 100%;
+                    }
+                        .characteristics_par {
+                            font-size: 18px;
+                            font-weight: bold;
+                            margin: 0;
+                            background-color: gray;
+                            padding: calc(1vw*0.5) calc(1vw*2);
+                            width: 90%;
+                            border-radius: calc(1vw*1);
+                        }
+            .skills {
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                height: calc(1vh*44);
+            }          
+                .skills_list_div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: start;
+                    align-items: center;
+                    width: calc(1vw*80);
+                    height: calc(1vh*40);
+                    margin: calc(1vh*2);
+                    border-radius: calc(1vw*3);
+                    padding: 0;
+                    background-color: rgb(218, 218, 218);
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                }
+                    .skill_div {
+                        display: flex;
+                        justify-content: start;
+                        align-items: center;
+                        width: calc(1vw*72);
+                        min-height: calc(1vh*6);
+                        margin-top: calc(1vh*1.5);
+                        border-radius: calc(1vw*2);
+                        background-color: gray;
+                    }
+                    .skill_div:last-child {
+                        margin-bottom: calc(1vh*1.5);
+                    }
+                        .skill_par {
+                            font-size: 18px;
+                            font-weight: bold;
+                            margin: 0 0 0 calc(1vw*3);
+                        }
+    </style>
+</head>
+<body>
+    <div class="screen">
+        <div class="screen_panels user">
+            <p class="head_par">STATUS</p>
+            <div class=" user_panel">
+                <div class="img_user_div center">
+                    <img class="img_user" id="img_user" src="img/logo_users.jpg" alt="User_photo">
+                </div>
+                <div class="status_user center">
+                    <p class="status_par" id="status_id_name">Name: X</p>
+                    <p class="status_par" id="status_id_age">Age: 21</p>
+                    <p class="status_par" id="status_id_level">Level: 0</p>
+                </div>
+            </div>
+        </div>
+        <div class="screen_panels characteristics">
+            <p class="head_par">CHARACTERISTICS</p>
+            <div class="characteristics_l-r">
+                <div class="characteristics_left_right">
+                    <p class="characteristics_par" id="characteristics_id_strength">Strength</p>
+                    <p class="characteristics_par" id="characteristics_id_speed">Speed</p>
+                    <p class="characteristics_par" id="characteristics_id_endurance">Endurance</p>
+                </div>
+                <div class="characteristics_left_right">
+                    <p class="characteristics_par" id="characteristics_id_ability">Ability</p>
+                    <p class="characteristics_par" id="characteristics_id_knowledge">Knowledge</p>
+                    <p class="characteristics_par" id="characteristics_id_intellect">Intellect</p>
+                </div>
+            </div>
+        </div>
+        <div class="screen_panels skills">
+            <p class="head_par">SKILLS</p>
+            <div class="skills_list_div" id="skills_list_div"></div>
+        </div>
+    </div>
+    <script>
+        let user = {
+            status: {
+                name: "x",
+                age: "00",
+                level: 1
+            },
+            characteristics: {
+                strength: 0,
+                speed: 0,
+                endurance: 0,
+                ability: 0,
+                knowledge: 0,
+                intellect: 0
+            },
+            skills: [
+                {name: "Russian", level: 1, exp: 0},
+                {name: "Russian", level: 1, exp: 0},
+                {name: "Russian", level: 1, exp: 0},
+                {name: "Russian", level: 1, exp: 0},
+                {name: "Russian", level: 1, exp: 0},
+                {name: "Russian", level: 1, exp: 0},
+                {name: "Russian", level: 1, exp: 0},
+                {name: "Russian", level: 1, exp: 0},
+                {name: "Russian", level: 1, exp: 0},
+                {name: "Russian", level: 1, exp: 0}
+            ]
+        }
+        const ScreenPar = {
+            status: {
+                name: document.getElementById("status_id_name"),
+                age: document.getElementById("status_id_age"),
+                level: document.getElementById("status_id_level")
+            },
+            characteristics: {
+                strength: document.getElementById("characteristics_id_strength"),
+                speed: document.getElementById("characteristics_id_speed"),
+                endurance: document.getElementById("characteristics_id_endurance"),
+                ability: document.getElementById("characteristics_id_ability"),
+                knowledge: document.getElementById("characteristics_id_knowledge"),
+                intellect: document.getElementById("characteristics_id_intellect")
+            },
+            skills: document.getElementById("skills_list_div")
+        }
+
+        const UpDateScreenPar = () => {
+            ScreenPar.status.name.innerHTML = `Name: ${user.status.name}`;
+            ScreenPar.status.age.innerHTML = `Age: ${user.status.age}`;
+            ScreenPar.status.level.innerHTML = `Level: ${user.status.level}`;
+            ScreenPar.characteristics.strength.innerHTML = `Strength: ${user.characteristics.strength}`;
+            ScreenPar.characteristics.speed.innerHTML = `Speed: ${user.characteristics.speed}`;
+            ScreenPar.characteristics.endurance.innerHTML = `Endurance: ${user.characteristics.endurance}`;
+            ScreenPar.characteristics.ability.innerHTML = `Ability: ${user.characteristics.ability}`;
+            ScreenPar.characteristics.knowledge.innerHTML = `Knowledge: ${user.characteristics.knowledge}`;
+            ScreenPar.characteristics.intellect.innerHTML = `Intellect: ${user.characteristics.intellect}`;
+            ScreenPar.skills.innerHTML = "";
+            user.skills.forEach(skill => {
+                ScreenPar.skills.innerHTML += CreateSkillLine(skill);                
+            });
+        }
+        UpDateScreenPar();
+
+
+        function CreateSkillLine(skill) {
+            answer = `<div class="skill_div">
+                    <p class="skill_par">${skill.name} || Lv: ${skill.level} || Exp: ${skill.exp}</p>
+                </div>`;
+            return answer;
+        }
+
+    </script>
+</body>
+</html>
